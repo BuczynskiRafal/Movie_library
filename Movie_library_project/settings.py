@@ -124,6 +124,9 @@ STATICFILES_DIRS = ['static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'movie_media'
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'all_movies'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
