@@ -10,7 +10,7 @@ def test_response(request):
 
 def all_movies(request):
     movies = Movie.objects.all()
-    return render(request, "movie.html", {'message': [movies]})
+    return render(request, 'movie.html', {'movies': movies})
 
 
 def new_movie(request):
