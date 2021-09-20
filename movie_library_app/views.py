@@ -8,8 +8,5 @@ def test_response():
 
 
 def all_movies(request):
-    all_movies = Movie.objects.all()
-    return render(request, "movie.html", {'message': all_movies})
-
-
-print(Movie.__dict__)
+    movies = Movie.objects.all()
+    return render(request, "movie.html", {'message': movies})

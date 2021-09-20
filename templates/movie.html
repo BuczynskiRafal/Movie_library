@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,9 +8,24 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'my.css' %}">
 </head>
 <body>
     <h1>Place for movie</h1>
+    {% if movies|length == 0 %}
+        <h1> Empty database </h1>
+    {% else %}
+        <h1>Place for movie</h1>
+        <h1>Movie count: {{ movies|length }}</h1>
+
+        {% for movie in movies %}
+            <p>{{ movie }}</p>
+        {% endfor %}
+    {% endif %}
+
+
+
+
 
     {% for movie in all_movies %}
         <p>{{ movie }}</p>
