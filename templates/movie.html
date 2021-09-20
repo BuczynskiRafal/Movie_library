@@ -1,5 +1,4 @@
 {% load static %}
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,6 +13,7 @@
     <h1>Place for movie</h1>
     {% if movies|length == 0 %}
         <h1> Empty database </h1>
+        <h1>Movie count: {{ movies|length }}</h1>
     {% else %}
         <h1>Place for movie</h1>
         <h1>Movie count: {{ movies|length }}</h1>
