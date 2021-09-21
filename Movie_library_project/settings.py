@@ -126,6 +126,8 @@ MEDIA_ROOT = 'movie_media'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'all_movies'
+LOGOUT_REDIRECT_URL = 'login'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

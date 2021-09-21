@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
 
 
+@login_required
 def test_response(request):
     return HttpResponse("<h1>First test</h1>")
 
