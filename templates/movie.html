@@ -20,13 +20,15 @@
         <h1>Movie count: {{ movies|length }}</h1>
         <h1>Movie count:</h1>
     {% else %}
-        <h1>Movie in library</h1>
-        <h1>Movie count: {{ movies|length }}</h1>
-
         {% for movie in movies %}
-            <h3>{{ movie }}</h3>
-            <a href="{% url 'edit_movie' movie.id %}">Edit</a>
-            <a href="{% url 'delete_movie' movie.id %}">Delete</a>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie }}</h5>
+              <p class="card-text"></p>
+                <a href="{% url 'edit_movie' movie.id %}">Edit</a>
+                <a href="{% url 'delete_movie' movie.id %}">Delete</a>
+          </div>
+        </div>
         {% endfor %}
     {% endif %}
 {% endblock %}
