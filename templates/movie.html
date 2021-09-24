@@ -14,13 +14,13 @@
     <hr>
     <a href="{% url 'new_movie' %}">New movie</a>
 
-    <h1>Place for movie</h1>
+    <h1>Welcome</h1>
     {% if movies|length == 0 %}
         <h1> Empty database </h1>
         <h1>Movie count: {{ movies|length }}</h1>
         <h1>Movie count:</h1>
     {% else %}
-        <h1>Place for movie</h1>
+        <h1>Movie in library</h1>
         <h1>Movie count: {{ movies|length }}</h1>
 
         {% for movie in movies %}
