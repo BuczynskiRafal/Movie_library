@@ -9,7 +9,7 @@ class Movie(models.Model):
     poster = models.ImageField(upload_to="posters", null=True, blank=True)
 
     def __str__(self):
-        return f"{self.title} ({str(self.description)})"
+        return f"{self.title} ({str(self.release_date)})"
 
     def movie_summary(self):
         movie_summary = f"The premiere of the film {self.title} took place on {self.release_date}"
