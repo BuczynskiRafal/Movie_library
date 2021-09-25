@@ -15,6 +15,7 @@ def all_movies(request):
     return render(request, 'movie.html', {'movies': movies})
 
 
+@login_required()
 def new_movie(request):
     form = MovieForm(request.POST or None, request.FILES or None)
 
@@ -22,9 +23,10 @@ def new_movie(request):
         form.save()
         return redirect(all_movies)
 
-    return render(request, 'movie_form.html', {'form': form})
+    return render(request, 'movie_form.html', {'form': form, 'new': True})
 
 
+@login_required()
 def edit_movie(request, id):
     movie = get_object_or_404(Movie, pk=id)
     form = MovieForm(request.POST or None, request.FILES or None, instance=movie)
@@ -32,7 +34,7 @@ def edit_movie(request, id):
     if form.is_valid():
         form.save()
         return redirect(all_movies)
-    return render(request, 'movie_form.html', {'form': form})
+    return render(request, 'movie_form.html', {'form': form, 'new': False})
 
 
 def delete_movie(request, id):
