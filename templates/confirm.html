@@ -3,10 +3,14 @@
 {% block title %} Confirm {% endblock %}
 
 {% block site %}
-    <h1>Confirm you want to delete {{ movie.title }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Delete movie</button>
-    </form>
-    <a href="{% url 'all_movies' %}">Back</a>
+    <div class="card" style="width: 36rem;">
+        <div class="card-body">
+          <h5 class="card-title">Confirm you want to delete {{ movie.title }}</h5>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete movie</button>
+            </form>
+        </div>
+
+        <a href="{% url 'all_movies' %}">Back</a>
 {% endblock %}

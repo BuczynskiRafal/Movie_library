@@ -22,19 +22,20 @@
         <h1>Movie count:</h1>
     {% else %}
         {% for movie in movies %}
-        <div class="card" style="width: 26rem;">
+        <div class="card" style="width: 60rem;">
           <div class="card-body">
+              <img src="/media/{{movie.poster}}" class="movie-poster">
               <div class="row">
                   <div class="col-9">
                       <h5 class="card-title">{{ movie }}</h5>
                   </div>
                   <div class="col-3">
-                      <a href="{% url 'edit_movie' movie.id %}"><i class="fas fa-2x fa-edit"></i></a>
-                      <a href="{% url 'delete_movie' movie.id %}"><i class="fas fa-2x fa-trash-alt"></i></a>
+                      <a href="{% url 'edit_movie' movie.id %}"><i class="fas fa-2x fa-edit movie-icon"></i></a>
+                      <a href="{% url 'delete_movie' movie.id %}"><i class="fas fa-2x fa-trash-alt movie-icon"></i></a>
                   </div>
               </div>
               <div class="col">
-                  <p class="card-text">{{ movie.description }}</p>
+                  <p class="card-text description">{{ movie.description }}</p>
               </div>
           </div>
         </div>
