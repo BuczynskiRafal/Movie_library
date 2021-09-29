@@ -33,3 +33,9 @@ class Reviev(models.Model):
     review = models.TextField(default='', blank=True)
     stars = models.PositiveSmallIntegerField(default=5)
     film = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+
+class Actor(models.Model):
+    first_name = models.CharField(max_length=32)
+    last_name = models.CharField(max_length=32)
+    films = models.ManyToManyField(Movie)

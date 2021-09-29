@@ -3,10 +3,12 @@ from django.contrib import admin
 from .models import Movie
 from .models import BonusInfo
 from .models import Reviev
+from .models import Actor
 
 admin.site.register(Movie)
 admin.site.register(BonusInfo)
 admin.site.register(Reviev)
+admin.site.register(Actor)
 
 
 # @admin.register(Movie)
