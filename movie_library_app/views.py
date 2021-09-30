@@ -17,24 +17,38 @@ def all_movies(request):
 
 @login_required()
 def new_movie(request):
-    form = MovieForm(request.POST or None, request.FILES or None)
+    movie_form = MovieForm(request.POST or None, request.FILES or None)
+    bonus_form = BonusInfo(request.POST or None, request.FILES or None)
 
-    if form.is_valid():
-        form.save()
+    if all((movie_form.is_valid(), bonus_form.is_valid())):
+        movie = movie_form.save(commit=False)
+        bonus = bonus_form.save()
+        movie.bonus_info = bonus
+        movie.save()
         return redirect(all_movies)
 
-    return render(request, 'movie_form.html', {'form': form, 'new': True})
+    return render(request, 'movie_form.html', {'form': movie_form, 'bonus_form': bonus_form, 'new': True})
 
 
 @login_required()
 def edit_movie(request, id):
     movie = get_object_or_404(Movie, pk=id)
-    form = MovieForm(request.POST or None, request.FILES or None, instance=movie)
 
-    if form.is_valid():
-        form.save()
+    try:
+        bonus = BonusInfo.objects.get(movie=movie.id)
+    except BonusInfo.DoNotExist:
+        bonus = None
+
+    movie_form = MovieForm(request.POST or None, request.FILES or None, instance=movie)
+    bonus_form = BonusInfo(request.POST or None, instance=bonus)
+
+    if all((movie_form.is_valid(), bonus_form.is_valid())):
+        movie = movie_form.save(commit=False)
+        bonus = bonus_form.save()
+        movie.bonus_info = bonus
+        movie.save()
         return redirect(all_movies)
-    return render(request, 'movie_form.html', {'form': form, 'new': False})
+    return render(request, 'movie_form.html', {'form': movie_form, 'bonus_form': bonus_form, 'new': False})
 
 
 def delete_movie(request, id):
