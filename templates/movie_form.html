@@ -22,5 +22,10 @@
             </form>
       </div>
     </div>
+    {% for rev in review %}
+        <h4>Review: {{rev.stars}}</h4>
+        <p>{{ rev.review }}</p>
+    {% endfor %}
+
     <a href="{% url 'all_movies' %}">Back</a>
 {% endblock %}

@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             field=models.PositiveSmallIntegerField(choices=[(0, 'Other'), (1, 'Comedy'), (4, 'Action'), (2, 'Horror'), (3, 'Drama')], default=0),
         ),
         migrations.CreateModel(
-            name='Reviev',
+            name='Review',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('review', models.TextField(blank=True, default='')),

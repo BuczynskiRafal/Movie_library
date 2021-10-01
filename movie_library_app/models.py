@@ -29,7 +29,7 @@ class Movie(models.Model):
         return movie_summary
 
 
-class Reviev(models.Model):
+class Review(models.Model):
     review = models.TextField(default='', blank=True)
     stars = models.PositiveSmallIntegerField(default=5)
     film = models.ForeignKey(Movie, on_delete=models.CASCADE)
