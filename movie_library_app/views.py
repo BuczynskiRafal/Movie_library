@@ -7,7 +7,7 @@ from .models import Review
 from .models import Actor
 from .models import BonusInfo
 from .forms import MovieForm
-from .forms import BonusInfo
+from .forms import BonusInfoForm
 from .forms import ReviewForm
 
 
@@ -24,7 +24,7 @@ def all_movies(request):
 @login_required()
 def new_movie(request):
     movie_form = MovieForm(request.POST or None, request.FILES or None)
-    bonus_form = BonusInfo(request.POST or None, request.FILES or None)
+    bonus_form = BonusInfoForm(request.POST or None)
 
     if all((movie_form.is_valid(), bonus_form.is_valid())):
         movie = movie_form.save(commit=False)
@@ -38,31 +38,37 @@ def new_movie(request):
 
 @login_required()
 def edit_movie(request, id):
+
     movie = get_object_or_404(Movie, pk=id)
-    review = Review.objects.filter(film=movie)
+
+    # try:
+    #     rev = Review.objects.filter(film=movie)
+    # except ObjectDoesNotExist:
+    #     rev = None
 
     try:
         bonus = BonusInfo.objects.get(movie=movie.id)
-    except BonusInfo.ObjectDoesNotExist:
+    except ObjectDoesNotExist:
         bonus = None
 
     movie_form = MovieForm(request.POST or None, request.FILES or None, instance=movie)
-    bonus_form = BonusInfo(request.POST or None, instance=bonus)
-    review_form = ReviewForm(request.POST or None)
+    bonus_form = BonusInfoForm(request.POST or None, instance=bonus)
+    # review_form = ReviewForm(request.POST or None)
 
-    if request.method == 'POST':
-        if 'stars' in request.POST:
-            review = review_form.save(commit=False)
-            review.film = movie
-            review.save()
+    # if request.method == 'POST':
+    #     if 'stars' in request.POST:
+    #         review = review_form.save(commit=False)
+    #         review.film = movie
+    #         review.save()
 
     if all((movie_form.is_valid(), bonus_form.is_valid())):
         movie = movie_form.save(commit=False)
-        bonus = bonus_form.save()
-        movie.bonus_info = bonus
+        bonus_info = bonus_form.save()
+        movie.bonus_info = bonus_info
         movie.save()
         return redirect(all_movies)
-    return render(request, 'movie_form.html', {'form': movie_form, 'bonus_form': bonus_form, 'review': review, 'review_form': review_form, 'new': False})
+    return render(request, 'movie_form.html', {'form': movie_form, 'bonus_form': bonus_form,
+                                               'new': False})
 
 
 def delete_movie(request, id):

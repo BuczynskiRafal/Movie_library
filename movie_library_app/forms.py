@@ -8,7 +8,7 @@ class MovieForm(ModelForm):
         fields = ["title", "description", "release_date", "imdb_rating"]
 
 
-class BonusInfo(ModelForm):
+class BonusInfoForm(ModelForm):
     class Meta:
         model = BonusInfo
         fields = ['duration', 'film_genre']
