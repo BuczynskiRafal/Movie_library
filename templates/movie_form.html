@@ -22,9 +22,21 @@
             </form>
       </div>
     </div>
-    {% for rev in review %}
-        <h4>Review: {{rev.stars}}</h4>
-        <p>{{ rev.review }}</p>
+    <div class="card" style="width: 36rem; float: left; margin-right: 1rem;">
+      <div class="card-body">
+          <h5 class="card-title">Rate the movie</h5>
+          <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{review_form|bootstrap }}
+              <button type="submit" class="btn btn-primary"> Rate the movie </button>
+          </form>
+      </div>
+    </div>
+
+
+    {% for r in rev %}
+        <h4>Review: {{r.stars}}</h4>
+        <p>{{r.review }}</p>
     {% endfor %}
 
     <a href="{% url 'all_movies' %}">Back</a>

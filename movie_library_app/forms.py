@@ -1,5 +1,8 @@
 from django.forms import ModelForm
-from .models import *
+from .models import Movie
+from .models import BonusInfo
+from .models import Review
+from .models import Actor
 
 
 class MovieForm(ModelForm):
