@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.models import User
+from rest_framework import viewsets
 from .models import Movie
 from .models import Review
 from .models import Actor
@@ -9,6 +11,12 @@ from .models import BonusInfo
 from .forms import MovieForm
 from .forms import BonusInfoForm
 from .forms import ReviewForm
+from .serializers import UserSerializer
+
+
+class UserView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 @login_required
