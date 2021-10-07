@@ -12,11 +12,17 @@ from .forms import MovieForm
 from .forms import BonusInfoForm
 from .forms import ReviewForm
 from .serializers import UserSerializer
+from .serializers import MovieSerializer
 
 
 class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class MovieViev(viewsets.ModelViewSet):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
 
 
 @login_required
@@ -100,3 +106,4 @@ def delete_movie(request, id):
         return redirect(all_movies)
 
     return render(request, "confirm.html", {"movie": movie})
+

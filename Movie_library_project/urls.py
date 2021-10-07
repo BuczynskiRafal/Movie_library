@@ -20,9 +20,11 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from rest_framework import routers
 from movie_library_app.views import UserView
+from movie_library_app.views import MovieViev
 
 router = routers.DefaultRouter()
 router.register(r'users', UserView)
+router.register(r'movie', MovieViev)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
